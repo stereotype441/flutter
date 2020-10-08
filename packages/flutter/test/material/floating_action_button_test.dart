@@ -108,7 +108,11 @@ void main() {
 
     // Test hover for tooltip.
     TestGesture? gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
-    await gesture!.addPointer();
+    // A recent flow analysis change
+    // (https://github.com/dart-lang/sdk/commit/e933e91aaa29531ccb32d5adec853270eedbedae)
+    // will make the non-null assertion unnecessary, so when that rolls into
+    // Flutter, we'll need to ignore an unnecessary_non_null_assertion warning.
+    await gesture!.addPointer(); // ignore: unnecessary_non_null_assertion
     addTearDown(() => gesture?.removePointer());
     await gesture.moveTo(tester.getCenter(find.byType(FloatingActionButton)));
     await tester.pumpAndSettle();
@@ -145,7 +149,11 @@ void main() {
 
     // Test hover for tooltip.
     TestGesture? gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
-    await gesture!.addPointer();
+    // A recent flow analysis change
+    // (https://github.com/dart-lang/sdk/commit/e933e91aaa29531ccb32d5adec853270eedbedae)
+    // will make the non-null assertion unnecessary, so when that rolls into
+    // Flutter, we'll need to ignore an unnecessary_non_null_assertion warning.
+    await gesture!.addPointer(); // ignore: unnecessary_non_null_assertion
     addTearDown(() => gesture?.removePointer());
     await tester.pumpAndSettle();
     await gesture.moveTo(tester.getCenter(find.byType(FloatingActionButton)));
